@@ -1,0 +1,38 @@
+{
+  "author": "Ilio Catallo <info@iliocatallo.it>",
+  "name": "parseltongue",
+  "version": "0.0.0",
+  "description": "S-expression parser",
+  "homepage": "https://github.com/iliocatallo/parseltongue#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/iliocatallo/parseltongue.git"
+  },
+  "keywords": [
+    "cell",
+    "cons",
+    "lisp",
+    "parse",
+    "parser",
+    "s-exp",
+    "s-expression",
+    "scheme",
+    "sexp",
+    "sexpression"
+  ],
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "c8 ---include=lib uvu test",
+    "coverage": "c8 report --reporter=lcov"
+  },
+  "volta": {
+    "node": "16.14.2",
+    "npm": "8.5.5"
+  },
+  "devDependencies": {
+    "c8": "^7.11.0",
+    "uvu": "^0.5.3"
+  }
+}
