@@ -23,6 +23,9 @@
   ],
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": ">=12.4"
+  },
   "scripts": {
     "test": "c8 ---include=lib uvu test",
     "coverage": "c8 report --reporter=lcov"
