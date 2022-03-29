@@ -13,3 +13,7 @@
     <img alt="Coverage" src="https://coveralls.io/repos/github/iliocatallo/parseltongue/badge.svg?branch=main"/>
   </a>
 </div>
+
+---
+
+<a href="https://www.flaticon.com/free-icons/snake" title="snake icons">Snake icons created by Freepik - Flaticon</a>
