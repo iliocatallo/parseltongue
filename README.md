@@ -19,6 +19,13 @@
 - [Introduction](#introduction)
 - [Installation](#installation)
 - [Reference](#reference)
+  - [Symbols](#symbols)
+  - [Numbers](#numbers)
+  - [Strings](#strings)
+  - [Booleans](#booleans)
+  - [Dotted pairs](#dotted-pairs)
+  - [Lists](#lists)
+  - [Quotations](#quotations)
 - [Shortcomings](#shortcomings)
 
 
