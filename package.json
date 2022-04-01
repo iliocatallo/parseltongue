@@ -1,7 +1,7 @@
 {
   "author": "Ilio Catallo <info@iliocatallo.it>",
   "name": "parseltongue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "S-expression parser",
   "homepage": "https://github.com/iliocatallo/parseltongue#readme",
   "license": "MIT",
