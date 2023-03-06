@@ -28,9 +28,9 @@ test('A s-expr is a list of mixing parenthesis', function () {
 test('A s-expr is a pair of car and cdr', function () {
     assert.equal(parse('(1 . 2)'), Pair.cons(1, 2))
     assert.equal(parse('(1 .      2)'), Pair.cons(1, 2))
-    assert.equal(parse(`(1     . 2)`), Pair.cons(1, 2))        
-    assert.equal(parse(`(   1 . 2)`), Pair.cons(1, 2))        
-    assert.equal(parse(`(1 . 2   )`), Pair.cons(1, 2))        
+    assert.equal(parse(`(1     . 2)`), Pair.cons(1, 2))
+    assert.equal(parse(`(   1 . 2)`), Pair.cons(1, 2))
+    assert.equal(parse(`(1 . 2   )`), Pair.cons(1, 2))
 })
 
 test('A s-expr is a list if built from a pair whose cdr is a list', function () {
@@ -72,7 +72,7 @@ test('A s-expr is a symbol', function () {
     assert.equal(parse('hello'), 'hello')
 })
 
-test('A s-expr it is a boolean', function () {
+test('A s-expr is a boolean', function () {
     assert.equal(parse('#f'), false)
     assert.equal(parse('#t'), true)
 })
