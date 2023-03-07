@@ -1,7 +1,7 @@
 import { test } from 'uvu'
 import * as assert from 'uvu/assert'
 import { parse } from '../lib/sexpr.js'
-import { Pair } from '../lib/pair.js'
+import { Pair } from '../lib/Pair.js'
 
 test('An empty s-list is parsed into an empty JS array', function () {
     assert.equal(parse('()'), [])
