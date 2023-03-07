@@ -13,7 +13,7 @@ import {
     nat,
     int,
     space
-} from '../lib/parser.js'
+} from '../lib/Parser.js'
 
 test('item', function () {
     assert.equal(item.parse(''), Array.of());
