@@ -57,6 +57,10 @@ test('Parser.alt', function () {
     assert.equal(item.alt(empty).parse('123'), Array.of(['1', '23']))
 })
 
+test('Parser.comma', function () {
+    assert.equal(item.comma(item).parse('1234'), Array.of(['2', '34']))
+})
+
 test('Do', function () {
     const parser = Do(function* () { const x = yield item; return x + x })
     assert.equal(parser.parse('abc'), Array.of(['aa', 'bc']))
