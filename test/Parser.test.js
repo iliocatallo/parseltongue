@@ -12,6 +12,7 @@ import {
     some,
     nat,
     int,
+    choice,
     space
 } from '../lib/Parser.js'
 
@@ -91,6 +92,11 @@ test('many & some', function () {
     assert.equal(many(string('abc')).parse('abcabc'), Array.of([['abc', 'abc'], '']))
     assert.equal(some(string('abc')).parse('abcabc'), Array.of([['abc', 'abc'], '']))
     assert.equal(some(digit).parse('abc'), Array.of())
+})
+
+test('choice', function () {
+    assert.equal(choice(char('a'), char('b'), char('c')).parse('abc'), Array.of(['a', 'bc']))
+    assert.equal(choice(char('a'), char('b'), char('c')).parse('bca'), Array.of(['b', 'ca']))
 })
 
 test('nat', function () {
