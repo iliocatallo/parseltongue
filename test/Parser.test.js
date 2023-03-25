@@ -13,7 +13,8 @@ import {
     nat,
     int,
     choice,
-    space
+    space,
+    token
 } from '../lib/Parser.js'
 
 test('item', function () {
@@ -115,6 +116,10 @@ test('int', function () {
 test('space', function () {
     assert.equal(space.parse('     abc'), Array.of([undefined, 'abc']))
     assert.equal(space.parse('abc'), Array.of([undefined, 'abc']))
+})
+
+test('token', function () {
+    assert.equal(token(char('[')).parse('[       abc'), Array.of(['[', 'abc']))
 })
 
 test.run()
