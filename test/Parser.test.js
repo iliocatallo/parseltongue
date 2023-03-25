@@ -14,7 +14,8 @@ import {
     int,
     choice,
     space,
-    token
+    token,
+    optional
 } from '../lib/Parser.js'
 
 test('item', function () {
@@ -93,6 +94,11 @@ test('many & some', function () {
     assert.equal(many(string('abc')).parse('abcabc'), Array.of([['abc', 'abc'], '']))
     assert.equal(some(string('abc')).parse('abcabc'), Array.of([['abc', 'abc'], '']))
     assert.equal(some(digit).parse('abc'), Array.of())
+})
+
+test('optional', function () {
+    assert.equal(optional(char('x')).parse('xyz'), Array.of([ ['x'], 'yz']) );
+    assert.equal(optional(char('x')).parse('abc'), Array.of([ [], 'abc']) );
 })
 
 test('choice', function () {

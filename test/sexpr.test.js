@@ -58,6 +58,8 @@ test('A s-list of numbers is parsed into an array of the corresponding native JS
 
 test('Fractional atomic numbers are parsed into the corresponding native JS numbers', function () {
     assert.equal(parse('12.8'), 12.8)
+    assert.equal(parse('.8'), 0.8)
+    assert.equal(parse('8.'), 8.0)
 })
 
 test('The empty atomic string is parsed into the native JS empty string', function () {
@@ -70,6 +72,10 @@ test('Non-empty atomic strings are parsed into native JS strings, with their con
 
 test('Symbols are parsed into native JS strings', function () {
     assert.equal(parse('hello'), 'hello')
+})
+
+test(`Symbols cannot start with a dot`, function () {
+    assert.throws(() => parse(`.abc`));
 })
 
 test('Atomic booleans are parsed into native JS booleans', function () {
