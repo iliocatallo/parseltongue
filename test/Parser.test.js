@@ -13,7 +13,6 @@ import {
     nat,
     int,
     choice,
-    space,
     token,
     optional
 } from '../lib/Parser.js'
@@ -117,11 +116,6 @@ test('int', function () {
     assert.equal(int.parse('1234abc'), Array.of([1234, 'abc']))
     assert.equal(int.parse('-1234abc'), Array.of([-1234, 'abc']))
     assert.equal(int.parse('-12-34abc'), Array.of([-12, '-34abc']))
-})
-
-test('space', function () {
-    assert.equal(space.parse('     abc'), Array.of([undefined, 'abc']))
-    assert.equal(space.parse('abc'), Array.of([undefined, 'abc']))
 })
 
 test('token', function () {
