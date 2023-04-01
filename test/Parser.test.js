@@ -13,7 +13,7 @@ import {
     nat,
     int,
     choice,
-    token,
+    sepBy,
     optional
 } from '../lib/Parser.js'
 
@@ -118,8 +118,9 @@ test('int', function () {
     assert.equal(int.parse('-12-34abc'), Array.of([-12, '-34abc']))
 })
 
-test('token', function () {
-    assert.equal(token(char('[')).parse('[       abc'), Array.of(['[', 'abc']))
+test('sepBy', function () {
+    assert.equal(sepBy(char(','), char('a')).parse('a,a,a'), Array.of([['a', 'a', 'a'] , '']))
+    assert.equal(sepBy(char(','), char('a')).parse('a'), Array.of([['a'] , '']))
 })
 
 test.run()

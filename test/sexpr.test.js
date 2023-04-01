@@ -101,4 +101,12 @@ test('Quoted S-expressions are parsed into their desugared form', function () {
     assert.equal(parse(`'5.3`), ['quote', 5.3])
 })
 
+test(`(a.7) is valid`, function () {
+    assert.equal(parse(`(a.7)`), ['a.7'])
+})
+
+test(`(7.a) is invalid`, function () {
+    assert.throws(() => parse(`(7.a)`))
+})
+
 test.run()
