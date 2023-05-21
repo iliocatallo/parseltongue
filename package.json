@@ -31,8 +31,7 @@
     "coverage": "c8 report --reporter=lcov"
   },
   "volta": {
-    "node": "16.14.2",
-    "npm": "8.5.5"
+    "node": "18.16.0"
   },
   "devDependencies": {
     "c8": "^7.11.0",
