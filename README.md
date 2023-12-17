@@ -78,7 +78,7 @@ parse(`+`);
 
 ### Numbers
 
-Atomic numbers are parsed into native JavaScript `number`s. As such, they are subject to the same rules and limitations. There is no support for fractions (i.e., exact numbers).
+Atomic numbers are parsed into native JavaScript `number`s. As such, they are subject to the same rules and limitations. There is no support for fractions (i.e., exact numbers). Exponential notation is also not supported at this time.
 
 ```javascript
 import { parse } from 'parseltongue';
