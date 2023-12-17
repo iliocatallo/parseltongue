@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "name": "Debug Current File",
+          "type": "node",
+          "request": "launch",
+          "program": "${file}",
+          "console": "integratedTerminal",
+          "env": {
+            "NODE_OPTIONS": "--import ./civet.js"
+          }
+      }
+  ]
+}
