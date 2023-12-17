@@ -1,0 +1,15 @@
+{
+  "typescript": {
+    "lineWidth": 140,
+    "quoteStyle": "preferSingle"
+  },
+  "includes": ["**/*.js"],
+  "excludes": [
+    "**/dist",
+    "**/node_modules",
+    "**/coverage"
+  ],
+  "plugins": [
+    "https://plugins.dprint.dev/typescript-0.88.7.wasm"
+  ]
+}
