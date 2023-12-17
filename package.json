@@ -27,7 +27,7 @@
     "node": ">=12.4"
   },
   "scripts": {
-    "test": "c8 ---include=lib uvu test",
+    "test": "c8 ---include=src uvu src .test.js",
     "coverage": "c8 report --reporter=lcov"
   },
   "volta": {
