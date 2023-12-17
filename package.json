@@ -26,9 +26,6 @@
   "files": [
     "/dist"
   ],
-  "engines": {
-    "node": ">=12.4"
-  },
   "scripts": {
     "build": "node build.js",
     "fmt": "dprint fmt",
