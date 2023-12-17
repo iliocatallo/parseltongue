@@ -1,0 +1,16 @@
+skip_output:
+  - meta
+  - success
+  - summary
+pre-commit:
+  parallel: false
+  commands:
+    fmt:
+      glob: "*.js"
+      run: npm run fmt {staged_files} && git add {staged_files}
+
+pre-push:
+  parallel: false
+  commands:
+    test:
+      run: npm test
