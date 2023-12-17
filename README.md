@@ -26,7 +26,8 @@
   - [Dotted pairs](#dotted-pairs)
   - [Lists](#lists)
   - [Quotations](#quotations)
-- [Shortcomings](#shortcomings)
+- [Partial Parsing](#partial-parsing)
+- [Error Handling](#error-handling)
 
 
 ## Introduction
@@ -169,15 +170,77 @@ parse(`'(1 2 3)`);
 // [ 'quote', [ 1, 2, 3 ] ]
 ```
 
-## Shortcomings
+## Partial Parsing
 
-In the presence of an error, Parseltongue only reports what part of the input string could not be parsed.
+Parseltoungue has built-in support for partial parsing. That is, the `parse` function asks for more characters if the input string has to potential to result in a well-defined S-expresssion.
 
 ```javascript
-import { parse } from 'parseltongue';
+import { Partial, parse } from 'parseltongue';
 
-parse(`12 . 4)`);
-// Error: Extraneous characters:  . 4)
+parse(`(1 2 `);
+// Partial {}
+
+parse(`(1 2 `).complete(`3)`);
+// [ 1, 2, 3 ]
+```
+
+A partial parsing can be turned into a failure using the `.fail()` method. When invoked, `.fail()` will throw a `ParseError` error.
+
+```javascript
+import { Partial, ParseError, parse } from 'parseltongue';
+
+parse(`(1 2`).fail();
+/* throws
+   ParseError {
+     at: 4,
+     expected: {
+       oneOf: [
+         '0', '1',     '2',
+         '3', '4',     '5',
+         '6', '7',     '8',
+         '9', '/\\s/', ')',
+         '.'
+       ]
+     }
+   }
+*/
+
+```
+
+
+
+
+## Error Handling
+
+When fed with a malformed input, `parse` throws a `ParseError` error detailing what valid characters were instead expected in the input string.
+
+```javascript
+import { ParseError, parse } from 'parseltongue';
+
+parse(`0.12q`);
+/* throws
+   ParseError {
+     at: 4,
+     expected: {
+       oneOf: [
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        'end-of-input'
+      ]
+    }
+  }
+*/
+
+parse(`0.121`);
+// 0.121
 ```
 
 <hr/>
