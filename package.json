@@ -21,12 +21,16 @@
     "sexp",
     "sexpression"
   ],
-  "main": "index.js",
   "type": "module",
+  "main": "dist/index.js",
+  "files": [
+    "/dist"
+  ],
   "engines": {
     "node": ">=12.4"
   },
   "scripts": {
+    "build": "node build.js",
     "test": "NODE_OPTIONS='--import ./civet.js' c8 --include=src --exclude=src/**.test.* --extension .civet --extension .js uvu src .test.js",
     "coverage": "NODE_OPTIONS='--import ./civet.js' c8 report --reporter=lcov --include=src --exclude=src/**.test.* --extension .civet --extension .js"
   },
@@ -37,6 +41,7 @@
     "@danielx/civet": "^0.6.56",
     "@types/node": "^20.10.4",
     "c8": "^8.0.1",
+    "esbuild": "^0.19.9",
     "uvu": "^0.5.6"
   }
 }

@@ -1,8 +1,0 @@
-#tests
-test
-coverage
-out
-.nyc_output
-
-#build tools
-.github
