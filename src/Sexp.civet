@@ -1,0 +1,83 @@
+{ concat3, join } from './fns.js'
+{ Pair } from './Pair.js'
+{ string, char, regex, many, some, defer, charset, opt, pure, space, rtrim, ltrim } from './H.js'
+{ operator alt,
+  operator ap,
+  operator ap1,
+  operator ap2,
+  operator map,
+  operator void1,
+  operator void2 } from './H.js'
+
+sboolean := do
+  sfalse := (string '#f') void2 false
+  strue  := (string '#t') void2 true
+  sfalse alt strue
+
+sstring := do
+  content := join map many regex /[^\\"]/
+  concat3 map (char `"`) ap content ap (char `"`)
+
+squote := do
+  desugar := (exp) => ['quote', exp]
+  desugar void1 (char `'`) ap (defer => sexp)
+
+snumber := do
+  digit := charset ['0'..'9']
+  sign  := opt '+', (char '-') alt (char '+')
+
+  assemble := (sign) => (int) => (digits) => parseFloat join [sign, ...int, '.', ...digits]
+  integral := assemble map sign ap (some digit) ap1 (pure '.') ap (pure ['0'])
+  decimal1 := assemble map sign ap (some digit) ap1 (char '.') ap (many digit)
+  decimal2 := assemble map sign ap (pure ['0']) ap1 (char '.') ap (some digit)
+  integral alt decimal1 alt decimal2
+
+ssymbol := do
+  peculiar := (char '+') alt (char '-') alt (string '...')
+  ordinary := do
+    assemble := (c) => (cs) => join [c, ...cs]
+    initial := do
+      letter  := regex /[a-zA-Z]/
+      special := charset ['!', '$', '%', '&', '*', '/', '<', ':', '~', '=', '?', '>', '^', '_']
+      letter alt special
+    subsequent := do
+      digit   := charset ['0'..'9']
+      special := charset ['+', '-', '.', '@']
+      initial alt digit alt special
+    assemble map initial ap (many subsequent)
+
+  peculiar alt ordinary
+
+pair := do
+  cons     := (car) => (cdr) => if Array.isArray cdr then [car, ...cdr] else new Pair car, cdr
+  element  := defer => sexp
+  first    := element
+  second   := (some space) ap2 (char '.') ap2 (some space) ap2 element
+
+  round    := cons void1 (rtrim char '(') ap first ap second ap1 (ltrim char ')')
+  square   := cons void1 (rtrim char '[') ap first ap second ap1 (ltrim char ']')
+  curly    := cons void1 (rtrim char '{') ap first ap second ap1 (ltrim char '}')
+
+  round alt square alt curly
+
+list := do
+  empty := do
+    round  := (char '(') ap2 (many space) void2 [] ap1 (char ')')
+    square := (char '[') ap2 (many space) void2 [] ap1 (char ']')
+    curly  := (char '{') ap2 (many space) void2 [] ap1 (char '}')
+    round alt square alt curly
+  full  := do
+    cons     := (car) => (cdr) => [car, ...cdr]
+    element  := defer => sexp
+    head     := element
+    rest     := (some space) ap2 element |> many
+
+    round    := cons void1 (rtrim char '(') ap head ap rest ap1 (ltrim char ')')
+    square   := cons void1 (rtrim char '[') ap head ap rest ap1 (ltrim char ']')
+    curly    := cons void1 (rtrim char '{') ap head ap rest ap1 (ltrim char '}')
+    round alt square alt curly
+  empty alt full
+
+sexp := sboolean alt sstring alt squote alt snumber alt ssymbol alt pair alt list
+
+export parse := (input) => sexp.parse input
