@@ -29,8 +29,8 @@
   "scripts": {
     "build": "node build.js",
     "fmt": "dprint fmt",
-    "test": "NODE_OPTIONS='--import ./civet.js' c8 --include=src --exclude=src/**.test.* --extension .civet --extension .js uvu src .test.js",
-    "coverage": "NODE_OPTIONS='--import ./civet.js' c8 report --reporter=lcov --include=src --exclude=src/**.test.* --extension .civet --extension .js"
+    "test": "NODE_OPTIONS='--import ./civet.js' c8 uvu src .test.js",
+    "coverage": "NODE_OPTIONS='--import ./civet.js' c8 report --reporter=lcov"
   },
   "devDependencies": {
     "@danielx/civet": "^0.9.6",
@@ -40,5 +40,10 @@
     "esbuild": "^0.25.0",
     "lefthook": "^1.10.10",
     "uvu": "^0.5.6"
+  },
+  "c8": {
+    "include": [ "src" ],
+    "exclude": [ "src/.test.*" ],
+    "extension": [ ".civet", ".js" ]
   }
 }
