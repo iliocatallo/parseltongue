@@ -29,7 +29,7 @@
   "scripts": {
     "build": "node build.js",
     "fmt": "dprint fmt",
-    "test": "c8 node --import ./civet.js --test-reporter dot --test src/**/*.test.js",
+    "test": "c8 node --import ./civet.js --test-reporter dot --test src/*.test.js",
     "coverage": "c8 report --reporter=lcov"
   },
   "devDependencies": {
