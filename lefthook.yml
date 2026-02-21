@@ -1,7 +1,4 @@
-skip_output:
-  - meta
-  - success
-  - summary
+output: false
 pre-commit:
   parallel: false
   commands:
