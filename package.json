@@ -30,7 +30,7 @@
     "build": "node build.js",
     "fmt": "dprint fmt",
     "test": "c8 node --import ./civet.js --test-reporter dot --test src/**/*.test.js",
-    "coverage": "NODE_OPTIONS='--import ./civet.js' c8 report --reporter=lcov"
+    "coverage": "c8 report --reporter=lcov"
   },
   "devDependencies": {
     "@danielx/civet": "^0.11.2",
