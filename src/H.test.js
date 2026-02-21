@@ -1,5 +1,5 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
+import assert from 'node:assert/strict';
+import { test } from 'node:test';
 import { concat2 } from './fns.js';
 import { chainr, char, many, pure, regex, some, string, void1 } from './H.js';
 
@@ -48,7 +48,7 @@ test('many', () => {
   const res2 = many(string('abc')).parse('abcabc');
 
   assert.throws(res1);
-  assert.equal(res2, ['abc', 'abc']);
+  assert.deepEqual(res2, ['abc', 'abc']);
 });
 
 test('some', () => {
@@ -56,7 +56,7 @@ test('some', () => {
   const res2 = some(string('abc')).parse('abcabc');
 
   assert.throws(res1);
-  assert.equal(res2, ['abc', 'abc']);
+  assert.deepEqual(res2, ['abc', 'abc']);
 });
 
 test('chainr', () => {
@@ -75,5 +75,3 @@ test('complete', () => {
   const res1 = string('abc').parse('ab');
   assert.equal(res1.complete('c'), 'abc');
 });
-
-test.run();

@@ -1,5 +1,5 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
+import assert from 'node:assert/strict';
+import { test } from 'node:test';
 import { Pair } from './Pair.js';
 import { parse } from './Sexp.civet';
 
@@ -45,7 +45,7 @@ test('0', () => {
 
 test('-0', () => {
   const res = parse('-0');
-  assert.equal(res, 0);
+  assert.equal(res, -0);
 });
 
 test('+0', () => {
@@ -60,7 +60,7 @@ test('000', () => {
 
 test('-000', () => {
   const res = parse('-000');
-  assert.equal(res, 0);
+  assert.equal(res, -0);
 });
 
 test('+000', () => {
@@ -140,62 +140,60 @@ test('1337.331', () => {
 
 test('()', () => {
   const res = parse('()');
-  assert.equal(res, []);
+  assert.deepEqual(res, []);
 });
 
 test('[]', () => {
   const res = parse('[]');
-  assert.equal(res, []);
+  assert.deepEqual(res, []);
 });
 
 test('{}', () => {
   const res = parse('{}');
-  assert.equal(res, []);
+  assert.deepEqual(res, []);
 });
 
 test('(   )', () => {
   const res = parse('(   )');
-  assert.equal(res, []);
+  assert.deepEqual(res, []);
 });
 
 test('[   ]', () => {
   const res = parse('[   ]');
-  assert.equal(res, []);
+  assert.deepEqual(res, []);
 });
 
 test('{   }', () => {
   const res = parse('{   }');
-  assert.equal(res, []);
+  assert.deepEqual(res, []);
 });
 
 test('(a b c)', () => {
   const res = parse('(a b c)');
-  assert.equal(res, ['a', 'b', 'c']);
+  assert.deepEqual(res, ['a', 'b', 'c']);
 });
 
 test('(a (b c))', () => {
   const res = parse('(a (b c))');
-  assert.equal(res, ['a', ['b', 'c']]);
+  assert.deepEqual(res, ['a', ['b', 'c']]);
 });
 
 test('{[a 1] [b 2] [c 3]}', () => {
   const res = parse('{[a 1] [b 2] [c 3]}');
-  assert.equal(res, [['a', 1], ['b', 2], ['c', 3]]);
+  assert.deepEqual(res, [['a', 1], ['b', 2], ['c', 3]]);
 });
 
 test('(1 . (2 . 3))', () => {
   const res = parse('(1 . (2 . 3))');
-  assert.equal(res, new Pair(1, new Pair(2, 3)));
+  assert.deepEqual(res, new Pair(1, new Pair(2, 3)));
 });
 
 test("'(1 2 3)", () => {
   const res = parse("'(1 2 3)");
-  assert.equal(res, ['quote', [1, 2, 3]]);
+  assert.deepEqual(res, ['quote', [1, 2, 3]]);
 });
 
 test("'5.3", () => {
   const res = parse("'5.3");
-  assert.equal(res, ['quote', 5.3]);
+  assert.deepEqual(res, ['quote', 5.3]);
 });
-
-test.run();
