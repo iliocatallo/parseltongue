@@ -33,7 +33,7 @@
     "coverage": "NODE_OPTIONS='--import ./civet.js' c8 report --reporter=lcov"
   },
   "devDependencies": {
-    "@danielx/civet": "^0.9.6",
+    "@danielx/civet": "^0.11.2",
     "@types/node": "^20.10.4",
     "c8": "^10.1.3",
     "dprint": "^0.51.1",
