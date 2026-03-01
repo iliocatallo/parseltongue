@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@danielx/civet": "^0.11.3",
-    "@types/node": "^20.10.4",
+    "@types/node": "^25.3.3",
     "c8": "^11.0.0",
     "dprint": "^0.52.0",
     "esbuild": "^0.27.3",
